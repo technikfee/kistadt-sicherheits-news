@@ -13,6 +13,7 @@ Nur Python-Standardbibliothek. Bricht mit Fehler ab, wenn eine Meldung
 unvollstaendig oder fehlerhaft ist, damit nie etwas Kaputtes online geht.
 """
 import datetime as dt
+import hashlib
 import html
 import json
 import re
@@ -25,9 +26,9 @@ SITE = ROOT / "site"
 
 NEWS_URL = "https://news.kischild.de/"
 NEWSLETTER_URL = "https://kischild.de/newsletter/"
-SCHLUSSSATZ = "Die komplette Meldung zum Nachlesen findest du auf news punkt kischild punkt de."
+SCHLUSSSATZ = "Die komplette Meldung zum Nachlesen findest du auf news punkt K I Schild punkt de."
 PLATZHALTER = ("Heute gibt es keine neue Meldung aus den K I Stadt Sicherheits-News. "
-               "Die letzten Meldungen zum Nachlesen findest du auf news punkt kischild punkt de. "
+               "Die letzten Meldungen zum Nachlesen findest du auf news punkt K I Schild punkt de. "
                "Hör bald wieder rein.")
 MAX_TAGE_ALEXA = 6          # Alexa spielt nichts, was aelter als 7 Tage ist
 MAX_MELDUNGEN_ALEXA = 5
@@ -84,6 +85,8 @@ def meldungen_laden():
             raise Fehler(f"{mid}: Hör-Fassung endet nicht mit dem festen Schlusssatz")
         if "http" in hoer.lower() or "www." in hoer.lower():
             raise Fehler(f"{mid}: Hör-Fassung darf keine Links enthalten")
+        if "kischild" in hoer.lower():
+            raise Fehler(f"{mid}: In der Hör-Fassung 'K I Schild' schreiben, damit Alexa es richtig ausspricht")
         if "kistadt" in hoer.lower() or "ki-stadt" in hoer.lower():
             raise Fehler(f"{mid}: In der Hör-Fassung 'K I Stadt' schreiben, damit Alexa es richtig ausspricht")
         quellen = m.get("quellen")
@@ -128,7 +131,7 @@ def feed_bauen(meldungen, jetzt):
         } for m in aktuell]
     heute = jetzt.replace(hour=5, minute=0, second=0, microsecond=0)
     return [{
-        "uid": f"urn:kistadt-sicherheits-news:platzhalter-{jetzt:%Y-%m-%d}",
+        "uid": f"urn:kistadt-sicherheits-news:platzhalter-{jetzt:%Y-%m-%d}-{hashlib.sha256(PLATZHALTER.encode()).hexdigest()[:8]}",
         "updateDate": alexa_zeit(heute if heute <= jetzt else jetzt),
         "titleText": "KiStadt Sicherheits-News",
         "mainText": PLATZHALTER,
