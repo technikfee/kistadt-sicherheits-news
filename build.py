@@ -146,7 +146,7 @@ def aussprache_bauen(jetzt):
     saetze = json.loads(datei.read_text(encoding="utf-8"))
     text = " ".join(text_pruefen(s, "aussprache", "aussprache", 300) for s in saetze)
     return [{
-        "uid": f"urn:kistadt-sicherheits-news:aussprache-{jetzt:%Y-%m-%d}",
+        "uid": f"urn:kistadt-sicherheits-news:aussprache-{jetzt:%Y-%m-%d}-{hashlib.sha256(text.encode()).hexdigest()[:8]}",
         "updateDate": alexa_zeit(jetzt),
         "titleText": "Aussprache-Test",
         "mainText": text,
