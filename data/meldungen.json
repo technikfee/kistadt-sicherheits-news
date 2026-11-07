@@ -1,1 +1,130 @@
-[]
+[
+  {
+    "id": "2026-11-03-3am-ransomware-schulen-ki-schleife",
+    "datum": "2026-11-03",
+    "veroeffentlicht": "2026-11-07T16:08:45+01:00",
+    "titel": "Erpresser-Angriff auf Schulen mit KI-Hilfe",
+    "titelLang": "Erpresser-Angriff auf Schulen mit KI-Hilfe",
+    "text": "Bitdefender hat einen Ransomware-Angriff der Gruppe 3AM auf einen britischen Schulverbund mit 47 Systemen untersucht, rund 37 davon wurden verschlüsselt. Laut Bitdefender lief der Angriff teils durch einen Menschen, teils in einer sogenannten Agenten-Schleife: Befehlsergebnisse gingen an ein Sprachmodell, das neue Befehle vorschlug. Die Angreifer stahlen zuerst Zugangsdaten aus der Backup-Software, legten versteckte Admin-Konten an und löschten am Ende die Sicherungen. Bitdefender spricht vom ersten solchen Fall, den das Team untersucht hat, betont aber, dass es kein bestätigter vollautomatischer Angriff war. Das Unternehmen erwartet, dass solche Mischangriffe 2027 häufiger werden.",
+    "hoerfassung": "Forscher haben einen Erpressungsangriff auf einen britischen Schulverbund untersucht. Rund 37 Rechner wurden verschlüsselt, am Ende löschten die Täter auch die Sicherungen. Ein Teil des Angriffs lief über eine KI, die nach jedem Schritt den nächsten Befehl vorschlug. Es war kein vollautomatischer Angriff, aber eine Mischung aus Mensch und KI. Die Forscher erwarten, dass solche Angriffe häufiger werden. Hör bald wieder rein.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "Bitdefender, 03.11.2026",
+        "url": "https://www.bitdefender.com/en-us/blog/businessinsights/3am-ransomware-hybrid-ai-attack"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-04-codex-jailbreak-prompt-werbung",
+    "datum": "2026-11-04",
+    "veroeffentlicht": "2026-11-07T16:08:45+01:00",
+    "titel": "Codex-Zusatzpaket schleust Werbung ein",
+    "titelLang": "Codex-Zusatzpaket schleust Werbung ein",
+    "text": "Check Point Research hat ein Jailbreak-Paket namens Haiou für OpenAIs Coding-Agenten Codex untersucht. Es wird auf GitHub als harmloses Erweiterungspaket angeboten und ändert die Einstellungen und Anweisungsdateien des Agenten. Danach baut der Agent bei Begrüßungen wie \"hi\" oder \"hello\" Werbung für eine undurchsichtige KI-Schnittstelle des Autors in seine Antworten ein. Check Point nennt das \"Prompt Adware\". Das Repository hatte laut Bericht 403 Sterne und 77 Kopien, das Paket steckt auch im Konfigurations-Tool Codex-X.",
+    "hoerfassung": "Forscher haben ein Zusatzpaket für einen KI-Assistenten zum Programmieren untersucht. Es wird als harmlose Erweiterung angeboten und verändert heimlich die Anweisungen der KI. Danach baut die KI bei einer Begrüßung Werbung für ein fremdes Angebot in ihre Antworten ein. Die Forscher nennen das Werbung per Prompt. Fremde Erweiterungen können also mitreden, ohne dass man es merkt. Hör bald wieder rein.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "The Hacker News, 04.11.2026",
+        "url": "https://thehackernews.com/2026/11/researchers-uncover-prompt-adware.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-chatgpt-lockdown-modus-umgangen",
+    "datum": "2026-11-05",
+    "veroeffentlicht": "2026-11-07T16:08:45+01:00",
+    "titel": "ChatGPT-Schutzmodus ließ sich umgehen",
+    "titelLang": "ChatGPT-Schutzmodus ließ sich umgehen",
+    "text": "Forscher von Check Point haben eine inzwischen geschlossene Lücke im Lockdown-Modus von ChatGPT offengelegt. Der Modus wurde im Juni 2026 als freiwillige Einstellung eingeführt, um Datenabfluss durch Prompt Injection zu verhindern. Über HTML-Vorschauen in Codeblöcken konnten präparierte Inhalte aus der Schutzumgebung ausbrechen und ohne Zutun der Nutzerin Chatdaten abgreifen, Schadsoftware ausliefern oder Fallen wie ein falsches ChatGPT-Update anzeigen. Ausgelöst werden konnte das über einen präparierten Prompt, ein bösartiges GPT oder einen geteilten Chat. OpenAI hat die Lücke laut Bericht am 18. September 2026 behoben; von Angriffen in freier Wildbahn ist nicht die Rede.",
+    "hoerfassung": "Forscher haben eine Lücke in einem Schutzmodus eines großen KI-Chats offengelegt. Der Modus sollte verhindern, dass versteckte Befehle Daten abfließen lassen. Über eine Vorschau-Funktion konnten präparierte Inhalte trotzdem Chatdaten abgreifen. Der Anbieter hat die Lücke im September geschlossen. Ein Schutzmodus ist hilfreich, aber keine Garantie. Hör bald wieder rein.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "The Hacker News, 05.11.2026",
+        "url": "https://thehackernews.com/2026/11/researchers-bypass-chatgpt-lockdown.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-ki-chef-imitation-129-millionen",
+    "datum": "2026-11-05",
+    "veroeffentlicht": "2026-11-07T16:08:45+01:00",
+    "titel": "KI-Chef-Betrug: 129 Millionen Dollar",
+    "titelLang": "KI-Chef-Betrug: 129 Millionen Dollar",
+    "text": "In New York wurden drei Männer angeklagt, die mit KI-Stimmen und teils KI-Videobildern Firmenchefs nachgeahmt haben sollen. Laut Anklage schrieben sie zuerst eine E-Mail im Namen des Chefs an die Buchhaltung und baten um Hilfe bei einer 'vertraulichen Transaktion'. Danach folgte ein Telefon- oder Videoanruf mit geklonter Stimme, anschließend gaben sie sich als Anwalt einer großen Kanzlei aus und ließen Überweisungen ins Ausland veranlassen. Über mehr als anderthalb Jahre sollen tausende Firmen weltweit angegriffen und rund 129 Millionen Dollar erbeutet worden sein, unter anderem von Kliniken und einer Bank. Die Vorwürfe sind noch nicht gerichtlich bestätigt.",
+    "hoerfassung": "In New York wurden drei Männer angeklagt, die mit KI-Stimmen Firmenchefs nachgeahmt haben sollen. Zuerst kam eine E-Mail an die Buchhaltung, dann ein Anruf mit geklonter Stimme. So sollen sie Überweisungen ins Ausland veranlasst haben. Insgesamt geht es um rund 129 Millionen Dollar. Die Vorwürfe sind noch nicht gerichtlich bestätigt. Hör bald wieder rein.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "SecurityWeek (AP), 05.11.2026",
+        "url": "https://www.securityweek.com/3-charged-in-scheme-to-use-ai-to-impersonate-ceos-and-attorneys-to-steal-129-million/"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-microsoft-artex-github-schluessel",
+    "datum": "2026-11-05",
+    "veroeffentlicht": "2026-11-07T16:08:45+01:00",
+    "titel": "KI-Agent klaut Cloud-Schlüssel in 5 Minuten",
+    "titelLang": "KI-Agent klaut Cloud-Schlüssel in 5 Minuten",
+    "text": "Microsoft Threat Intelligence berichtet, dass Angreifer das KI-Agenten-Werkzeug ARTEX nutzen, um öffentliche GitHub-Repositories nach offen liegenden Zugangsdaten zu durchsuchen, etwa Passwörter, App-Schlüssel und API-Schlüssel von KI-Anbietern. Seit August 2026 sah Microsoft große Mengen solcher Suchen, oft mit Firmennamen kombiniert. In einem Fall brauchte ein KI-Agent nur fünf Minuten von der GitHub-Suche bis zum Abziehen von Daten aus einem Azure Key Vault. Seit Ende Oktober gab es erfolgreiche Anmeldungen in Dutzenden Anwendungen bei mehreren Kunden, dabei wurden auch SharePoint-, OneDrive- und Postfach-Inhalte gelesen. Ein gestohlener Schlüssel eines Dienstleisters wurde gegen dessen Kunden eingesetzt.",
+    "hoerfassung": "Sicherheitsforscher berichten, dass Angreifer KI-Agenten auf öffentliche Code-Sammlungen ansetzen. Die Agenten suchen dort nach vergessenen Passwörtern und Zugangsschlüsseln. In einem Fall dauerte es nur fünf Minuten vom Fund bis zum Datendiebstahl. Danach wurden auch Postfächer und Cloud-Ordner gelesen. Ein Schlüssel im Code ist wie ein Haustürschlüssel unter der Fußmatte. Hör bald wieder rein.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "Microsoft Security Blog, 05.11.2026",
+        "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-05-openai-948-linux-exploits",
+    "datum": "2026-11-05",
+    "veroeffentlicht": "2026-11-07T16:08:45+01:00",
+    "titel": "KI baut 948 Linux-Angriffe",
+    "titelLang": "KI baut 948 Linux-Angriffe",
+    "text": "OpenAI hat ein Forschungsprojekt vorgestellt, bei dem ein noch unveröffentlichtes, auf Cybersicherheit spezialisiertes KI-Modell Lücken im Linux-Kernel sucht, prüft und Korrekturen vorschlägt. In einem Lauf Mitte Oktober 2026 hat die KI 2.308 mögliche Fehler untersucht, 1.724 davon nachgestellt und 948 funktionierende Angriffe gebaut, mit denen man auf einem System volle Admin-Rechte bekommt. Die Kosten lagen laut OpenAI bei rund 1,2 Millionen Dollar, also etwa 1.279 Dollar pro Angriff. Die Ergebnisse gehen nach menschlicher Prüfung an die Linux-Entwickler. OpenAI warnt: Wer auf einem nicht aktuellen System nur ein einfaches Benutzerkonto hat, ist für gut ausgestattete Angreifer praktisch schon Admin.",
+    "hoerfassung": "Ein großer KI-Anbieter hat ein Forschungsprojekt vorgestellt. Eine spezialisierte KI hat im Kern eines weit verbreiteten Betriebssystems nach Fehlern gesucht und 948 funktionierende Angriffe gebaut. Die Ergebnisse gehen nach Prüfung an dessen Entwickler, damit sie die Lücken schließen. KI findet Schwachstellen also inzwischen in großer Zahl. Das hilft den Verteidigern, aber nur, wenn Systeme aktuell gehalten werden. Hör bald wieder rein.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "The Hacker News, 05.11.2026",
+        "url": "https://thehackernews.com/2026/11/openai-ai-pipeline-generates-948-linux.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-artex-ki-agenten-spielkonten",
+    "datum": "2026-11-06",
+    "veroeffentlicht": "2026-11-07T16:08:45+01:00",
+    "titel": "KI-Agenten erbeuten 190.000 Spielkonten",
+    "titelLang": "KI-Agenten erbeuten 190.000 Spielkonten",
+    "text": "Check Point hat neue Angriffe mit dem chinesischen KI-Agenten-Werkzeug ARTEX untersucht. Die Forscher fanden 2.557 Systeme mit ARTEX-Bedienoberflächen, 1.608 davon öffentlich erreichbar. Ein Täter ließ die Agenten Server angreifen, auf denen gestohlene Spielkonten lagen, und erbeutete über 190.000 Zugangsdatensätze für das Spiel Honor of Kings. Andere griffen Händler für Apple-Signaturzertifikate und 292 Krypto-Zahlungsseiten an. Die KI nutzte dabei keine neuen Tricks, sondern einfache Fehler wie fest eingebaute Admin-Passwörter, ungeschützte Schnittstellen und schwache Passwörter.",
+    "hoerfassung": "Forscher haben Angriffe mit einem KI-Agenten-Werkzeug untersucht. Ein Täter ließ die Agenten Server angreifen und erbeutete über 190.000 Zugänge zu einem Online-Spiel. Andere griffen Bezahlseiten für Krypto-Geld an. Die KI nutzte dabei keine neuen Tricks, sondern einfache Fehler wie schwache Passwörter. Das Grundlegende schützt also weiterhin am besten. Hör bald wieder rein.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "GBHackers, 06.11.2026",
+        "url": "https://gbhackers.com/gaming-accounts-targeted/"
+      }
+    ]
+  },
+  {
+    "id": "2026-11-06-chainalysis-alle-zugangsdaten",
+    "datum": "2026-11-06",
+    "veroeffentlicht": "2026-11-07T16:08:45+01:00",
+    "titel": "Chainalysis: Zugangsdaten aller Kunden offen",
+    "titelLang": "Chainalysis: Zugangsdaten aller Kunden offen",
+    "text": "Die Blockchain-Analysefirma Chainalysis hat ihre Angaben zum Angriff mit KI-Werkzeugen deutlich erweitert. Laut aktueller Mitteilung wurden Benutzernamen, Passwort-Hashes und aktive Tokens aller Kundinnen und Kunden offengelegt. Das Unternehmen hat das Login-Portal sowie mehrere Produkte wie Reactor, KYT und die Adressprüfung vom Netz genommen und Konten gesperrt. Zugang gibt es erst wieder, wenn Kunden vertrauenswürdige IP-Adressen melden; danach müssen alle Passwörter zurücksetzen und API-Schlüssel erneuern. Hinweise auf Zugriff auf Ermittlungsdaten gibt es laut Chainalysis nicht.",
+    "hoerfassung": "Eine Firma für Blockchain-Analysen hat neue Details zu einem Angriff mit KI-Werkzeugen genannt. Offengelegt wurden Benutzernamen, verschlüsselte Passwörter und aktive Zugänge aller Kunden. Die Firma hat ihre Dienste vom Netz genommen und Konten gesperrt. Alle Kunden müssen ihre Passwörter und Schlüssel erneuern. Aus ein paar Daten wurden so in kurzer Zeit alle. Hör bald wieder rein.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "BleepingComputer, 06.11.2026",
+        "url": "https://www.bleepingcomputer.com/news/security/chainalysis-says-breach-exposed-credentials-for-all-customers/"
+      }
+    ]
+  }
+]
