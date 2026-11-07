@@ -260,6 +260,20 @@ footer{{border-top:1px solid var(--linie);margin-top:36px;padding-top:18px;color
 """
 
 
+def notfall_aktiv():
+    """Notfall-Schalter: Liegt data/notfall.json mit "aktiv": true vor,
+    bekommt Alexa keine Meldungen mehr, nur den Platzhalter-Satz.
+    Die News-Seite bleibt unverändert. Zum Aufheben die Datei löschen
+    oder "aktiv" auf false setzen (jeweils per Vorschlag und Freigabe)."""
+    datei = DATA / "notfall.json"
+    if not datei.exists():
+        return False
+    try:
+        return json.loads(datei.read_text(encoding="utf-8")).get("aktiv") is True
+    except (ValueError, AttributeError):
+        return True   # kaputte Datei: sicherheitshalber leeren
+
+
 def main():
     jetzt = dt.datetime.now(dt.timezone.utc)
     try:
@@ -268,12 +282,16 @@ def main():
     except Fehler as f:
         print(f"FEHLER: {f}", file=sys.stderr)
         return 1
+    notfall = notfall_aktiv()
     SITE.mkdir(exist_ok=True)
-    (SITE / "feed.json").write_text(json.dumps(feed_bauen(meldungen, jetzt), ensure_ascii=False, indent=2), encoding="utf-8")
+    feed = feed_bauen([] if notfall else meldungen, jetzt)
+    (SITE / "feed.json").write_text(json.dumps(feed, ensure_ascii=False, indent=2), encoding="utf-8")
     if aussprache:
         (SITE / "aussprache.json").write_text(json.dumps(aussprache, ensure_ascii=False, indent=2), encoding="utf-8")
     (SITE / "index.html").write_text(seite_bauen(meldungen), encoding="utf-8")
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
+    if notfall:
+        print("NOTFALL aktiv: Alexa liest keine Meldungen vor, nur den Satz für Tage ohne neue Meldung.")
     print(f"OK: {len(meldungen)} Meldungen, Nachrichten-Datei und News-Seite gebaut.")
     return 0
 
