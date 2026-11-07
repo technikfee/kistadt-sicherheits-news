@@ -27,6 +27,9 @@ SITE = ROOT / "site"
 NEWS_URL = "https://news.kischild.de/"
 NEWSLETTER_URL = "https://kischild.de/newsletter/"
 SCHLUSSSATZ = "Hör bald wieder rein."
+# Kennungs-Runde: Wird diese Zahl erhöht, bekommen alle Meldungen eine neue
+# Kennung und Alexa spielt sie wieder ab, auch wenn sie schon gehört wurden.
+KENNUNG_RUNDE = "2"
 PLATZHALTER = ("Heute gibt es keine neue Meldung aus den K I Stadt Sicherheits-News. "
                "Hör bald wieder rein.")
 MAX_TAGE_ALEXA = 6          # Alexa spielt nichts, was aelter als 7 Tage ist
@@ -130,7 +133,7 @@ def feed_bauen(meldungen, jetzt):
             text = m["hoerfassung"]
             if i == len(aktuell) - 1:
                 text = text + " " + SCHLUSSSATZ   # nur nach der letzten Meldung
-            pruef = hashlib.sha256(text.encode()).hexdigest()[:8]
+            pruef = hashlib.sha256((KENNUNG_RUNDE + text).encode()).hexdigest()[:8]
             eintraege.append({
                 "uid": f"urn:kistadt-sicherheits-news:{m['id']}-{pruef}",
                 "updateDate": alexa_zeit(m["veroeffentlicht"]),
