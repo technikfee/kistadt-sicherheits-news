@@ -80,8 +80,12 @@ def meldungen_laden():
         if not DATUM_RE.match(datum):
             raise Fehler(f"{mid}: 'datum' muss JJJJ-MM-TT sein")
         hoer = text_pruefen(m.get("hoerfassung"), "hoerfassung", mid, MAX_HOER)
-        if not hoer.endswith(SCHLUSSSATZ):
-            raise Fehler(f"{mid}: Hör-Fassung endet nicht mit dem festen Schlusssatz")
+        # Der Schlusssatz kommt nur einmal ans Ende des ganzen Feeds, nicht an jede Meldung
+        hoer = hoer.strip()
+        while hoer.endswith(SCHLUSSSATZ):
+            hoer = hoer[:-len(SCHLUSSSATZ)].strip()
+        if not hoer:
+            raise Fehler(f"{mid}: Hör-Fassung ist leer")
         if "http" in hoer.lower() or "www." in hoer.lower():
             raise Fehler(f"{mid}: Hör-Fassung darf keine Links enthalten")
         if re.search(r"kischild|k i schild|punkt de\b|\.de\b", hoer.lower()):
@@ -121,13 +125,20 @@ def feed_bauen(meldungen, jetzt):
     grenze = jetzt - dt.timedelta(days=MAX_TAGE_ALEXA)
     aktuell = [m for m in meldungen if grenze <= m["veroeffentlicht"] <= jetzt][:MAX_MELDUNGEN_ALEXA]
     if aktuell:
-        return [{
-            "uid": f"urn:kistadt-sicherheits-news:{m['id']}",
-            "updateDate": alexa_zeit(m["veroeffentlicht"]),
-            "titleText": m["titel"],
-            "mainText": m["hoerfassung"],
-            "redirectionUrl": NEWS_URL,
-        } for m in aktuell]
+        eintraege = []
+        for i, m in enumerate(aktuell):
+            text = m["hoerfassung"]
+            if i == len(aktuell) - 1:
+                text = text + " " + SCHLUSSSATZ   # nur nach der letzten Meldung
+            pruef = hashlib.sha256(text.encode()).hexdigest()[:8]
+            eintraege.append({
+                "uid": f"urn:kistadt-sicherheits-news:{m['id']}-{pruef}",
+                "updateDate": alexa_zeit(m["veroeffentlicht"]),
+                "titleText": m["titel"],
+                "mainText": text,
+                "redirectionUrl": NEWS_URL,
+            })
+        return eintraege
     heute = jetzt.replace(hour=5, minute=0, second=0, microsecond=0)
     return [{
         "uid": f"urn:kistadt-sicherheits-news:platzhalter-{jetzt:%Y-%m-%d}-{hashlib.sha256(PLATZHALTER.encode()).hexdigest()[:8]}",
@@ -180,7 +191,7 @@ def seite_bauen(meldungen):
       {absaetze(m['text'])}
       <div class="tun">
         <strong>Was du jetzt tun kannst</strong>
-        <p>Die konkreten Schritte bekommst du in den KiStadt Sicherheits-News per E-Mail.</p>
+        <p>Wenn du wissen möchtest, was du in diesem Fall jetzt tun kannst, hol dir die KiStadt Sicherheits-News in dein E-Mail-Postfach. Dort bekommst du die konkreten Schritte.</p>
         <a class="btn" href="{NEWSLETTER_URL}">Kostenlos eintragen</a>
       </div>
       <h3>Quellen</h3>
