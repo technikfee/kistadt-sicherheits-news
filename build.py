@@ -181,7 +181,7 @@ def seite_bauen(meldungen):
     karten = []
     for m in meldungen:
         quellen = "".join(
-            f'<li><a href="{e(q["url"])}" rel="noopener noreferrer">{e(q["name"])}</a></li>'
+            f'<li><a href="{e(q["url"])}" target="_blank" rel="noopener noreferrer">{e(q["name"])}</a></li>'
             for q in m["quellen"])
         akut = '<span class="marke akut">Akut</span>' if m["akut"] else ""
         karten.append(f"""
