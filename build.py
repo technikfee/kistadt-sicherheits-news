@@ -26,7 +26,7 @@ SITE = ROOT / "site"
 NEWS_URL = "https://news.kischild.de/"
 NEWSLETTER_URL = "https://kischild.de/newsletter/"
 SCHLUSSSATZ = "Die komplette Meldung zum Nachlesen findest du auf news punkt kischild punkt de."
-PLATZHALTER = ("Heute gibt es keine neue Meldung aus den KiStadt Sicherheits-News. "
+PLATZHALTER = ("Heute gibt es keine neue Meldung aus den K I Stadt Sicherheits-News. "
                "Die letzten Meldungen zum Nachlesen findest du auf news punkt kischild punkt de. "
                "Hör bald wieder rein.")
 MAX_TAGE_ALEXA = 6          # Alexa spielt nichts, was aelter als 7 Tage ist
@@ -84,6 +84,8 @@ def meldungen_laden():
             raise Fehler(f"{mid}: Hör-Fassung endet nicht mit dem festen Schlusssatz")
         if "http" in hoer.lower() or "www." in hoer.lower():
             raise Fehler(f"{mid}: Hör-Fassung darf keine Links enthalten")
+        if "kistadt" in hoer.lower() or "ki-stadt" in hoer.lower():
+            raise Fehler(f"{mid}: In der Hör-Fassung 'K I Stadt' schreiben, damit Alexa es richtig ausspricht")
         quellen = m.get("quellen")
         if not isinstance(quellen, list) or not quellen:
             raise Fehler(f"{mid}: mindestens eine Quelle ist Pflicht")
