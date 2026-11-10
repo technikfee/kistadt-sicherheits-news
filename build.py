@@ -9,6 +9,11 @@ Ausgabe im Ordner site/:
   aussprache.json Testdatei fuer den Aussprache-Test (nur zum Testen im Skill)
   index.html      Die News-Seite (news.kischild.de)
 
+Warteschlange (festgelegt mit Evelyn am 10.11.2026): Jede Meldung hat in
+"veroeffentlicht" ihren Freischalt-Zeitpunkt (vergibt einplanen.py). Mittwochs
+starten 3 Meldungen, danach kommt jeden Morgen eine dazu. Alexa spielt die
+5 neuesten der laufenden Woche, die neueste zuerst. Mittwoch beginnt neu.
+
 Nur Python-Standardbibliothek. Bricht mit Fehler ab, wenn eine Meldung
 unvollstaendig oder fehlerhaft ist, damit nie etwas Kaputtes online geht.
 """
@@ -16,9 +21,13 @@ import datetime as dt
 import hashlib
 import html
 import json
+import random
 import re
 import sys
 from pathlib import Path
+
+from alexa_text import (BERLIN, rundenstart, ansage, saeubern,
+                        FLOSKELN_ANFANG, FLOSKELN_MITTE, FLOSKELN_ENDE)
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
@@ -33,7 +42,7 @@ KENNUNG_RUNDE = "2"
 PLATZHALTER = ("Heute gibt es keine neue Meldung aus den K I Stadt Sicherheits-News. "
                "Hör bald wieder rein.")
 MAX_TAGE_ALEXA = 6          # Alexa spielt nichts, was aelter als 7 Tage ist
-MAX_MELDUNGEN_ALEXA = 5
+MAX_MELDUNGEN_ALEXA = 5     # Amazon spielt hoechstens 5 Eintraege
 MAX_HOER = 800              # Zeichen, Sicherheitsgrenze (Ziel: 600)
 
 ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,120}$")
@@ -124,15 +133,45 @@ def alexa_zeit(t):
     return t.astimezone(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.0Z")
 
 
+def fuer_alexa_auswaehlen(meldungen, jetzt):
+    """Nachrichtenpool: Meldungen der laufenden Woche (ab Mittwoch 0 Uhr),
+    die schon freigeschaltet sind, die neueste zuerst, hoechstens 5.
+    Hat die neue Woche noch keine Meldung (Mittwochmorgen vor der Freigabe),
+    bleibt die Vorwoche stehen, damit niemand nur den Platzhalter hoert."""
+    alter = jetzt - dt.timedelta(days=MAX_TAGE_ALEXA)
+    frei = [m for m in meldungen if alter <= m["veroeffentlicht"] <= jetzt]
+    start = rundenstart(jetzt)
+    diese_woche = [m for m in frei if m["veroeffentlicht"] >= start]
+    auswahl = diese_woche or [m for m in frei if m["veroeffentlicht"] >= start - dt.timedelta(days=7)]
+    return auswahl[:MAX_MELDUNGEN_ALEXA]
+
+
+def alexa_texte(auswahl, jetzt):
+    """Baut die vorgelesenen Texte: Ansage, Ueberleitungen, Schlusssatz."""
+    tag = jetzt.astimezone(BERLIN).date().isoformat()
+    zufall = random.Random("kistadt-" + tag)        # jeden Tag anders, am selben Tag gleich
+    n = len(auswahl)
+    mitte = zufall.sample(FLOSKELN_MITTE, max(0, n - 2))
+    anfang, ende = zufall.choice(FLOSKELN_ANFANG), zufall.choice(FLOSKELN_ENDE)
+    texte = []
+    for i, m in enumerate(auswahl):
+        teile = []
+        if i == 0:
+            teile.append(ansage(jetzt))
+        if n > 1:
+            teile.append(anfang if i == 0 else ende if i == n - 1 else mitte[i - 1])
+        teile.append(saeubern(m["hoerfassung"]))
+        if i == n - 1:
+            teile.append(SCHLUSSSATZ)                   # nur nach der letzten Meldung
+        texte.append(" ".join(teile))
+    return texte
+
+
 def feed_bauen(meldungen, jetzt):
-    grenze = jetzt - dt.timedelta(days=MAX_TAGE_ALEXA)
-    aktuell = [m for m in meldungen if grenze <= m["veroeffentlicht"] <= jetzt][:MAX_MELDUNGEN_ALEXA]
+    aktuell = fuer_alexa_auswaehlen(meldungen, jetzt)
     if aktuell:
         eintraege = []
-        for i, m in enumerate(aktuell):
-            text = m["hoerfassung"]
-            if i == len(aktuell) - 1:
-                text = text + " " + SCHLUSSSATZ   # nur nach der letzten Meldung
+        for m, text in zip(aktuell, alexa_texte(aktuell, jetzt)):
             pruef = hashlib.sha256((KENNUNG_RUNDE + text).encode()).hexdigest()[:8]
             eintraege.append({
                 "uid": f"urn:kistadt-sicherheits-news:{m['id']}-{pruef}",
@@ -291,7 +330,10 @@ def main():
     (SITE / "feed.json").write_text(json.dumps(feed, ensure_ascii=False, indent=2), encoding="utf-8")
     if aussprache:
         (SITE / "aussprache.json").write_text(json.dumps(aussprache, ensure_ascii=False, indent=2), encoding="utf-8")
-    (SITE / "index.html").write_text(seite_bauen(meldungen), encoding="utf-8")
+    # Die News-Seite zeigt nur, was schon freigeschaltet ist; Meldungen aus der
+    # Warteschlange erscheinen an ihrem Tag (der Bau laeuft jeden Morgen).
+    sichtbar = [m for m in meldungen if m["veroeffentlicht"] <= jetzt]
+    (SITE / "index.html").write_text(seite_bauen(sichtbar), encoding="utf-8")
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
     if notfall:
         print("NOTFALL aktiv: Alexa liest keine Meldungen vor, nur den Satz für Tage ohne neue Meldung.")
