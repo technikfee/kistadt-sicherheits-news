@@ -430,5 +430,149 @@
       }
     ],
     "veroeffentlicht": "2026-11-25T05:00:00+01:00"
+  },
+  {
+    "id": "2026-11-23-eu-kommission-daten-abgeflossen",
+    "datum": "2026-11-23",
+    "titel": "EU-Kommission: Nach KI-Angriff Daten abgeflossen",
+    "titelLang": "EU-Kommission: Nach KI-Angriff Daten abgeflossen",
+    "text": "Nach dem KI-gestützten Cyberangriff auf die EU-Kommission ist erstmals bestätigt, dass Daten abgeflossen sind: Namen und E-Mail-Adressen, vor allem von Nutzern der Lernplattform EU Academy. Die Webseite der EU Academy wurde am Samstag abgeschaltet, mehrere interne Anwendungen sind weiter offline. Der am 22. Oktober entdeckte Angriff ist laut zwei mit der Sache vertrauten Quellen noch nicht vollständig eingedämmt. Die Kommission vermutet intern eine staatlich unterstützte Gruppe aus China, offiziell zugeordnet ist der Angriff aber nicht. Die Kommission warnt vor möglichen Phishing-Mails mit den gestohlenen Daten.",
+    "hoerfassung": "Nach dem Cyberangriff mit einem KI-Werkzeug auf die EU-Kommission sind nun Daten abgeflossen. Betroffen sind Namen und E-Mail-Adressen, vor allem von Menschen, die eine Lernplattform der EU genutzt haben. Diese Plattform wurde am Wochenende abgeschaltet. Der Angriff wurde schon im Oktober entdeckt und ist noch nicht ganz eingedämmt. Die Kommission warnt vor gefälschten E-Mails, die mit den gestohlenen Daten verschickt werden könnten.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "Euronews, 23.11.2026",
+        "url": "https://de.euronews.com/2026/11/23/cyberangriff-eu-kommission-verdacht-china-hacker"
+      }
+    ],
+    "veroeffentlicht": "2026-11-25T08:08:15+01:00"
+  },
+  {
+    "id": "2026-11-23-indien-ki-angriffe-zahlungen",
+    "datum": "2026-11-23",
+    "titel": "Indien: KI-gestützte Angriffe lösen falsche Zahlungen aus",
+    "titelLang": "Indien: KI-gestützte Angriffe lösen falsche Zahlungen aus",
+    "text": "Das indische Computer-Notfallteam CERT-In hat am 20.11.2026 eine Warnung mit der Stufe 'kritisch' veröffentlicht. Angreifer haben bei Banken, Fintechs und IT-Dienstleistern Geschäftsdaten und Freigabe-Beziehungen verändert und dann über ganz normale Zahlungsabläufe unberechtigte Überweisungen ausgelöst, die keine Alarme auslösten. Laut CERT-In setzen Angreifer dabei KI-gesteuerte Angriffs-Frameworks mit mehreren Agenten ein, die Systeme auskundschaften, Exploits aus Patches bauen und bei Fehlschlägen selbst neue Wege probieren. Die Zeit vom Eindringen bis zum Schaden schrumpft damit laut CERT-In von Tagen auf wenige Stunden. Wie viel Geld gestohlen wurde, hat CERT-In nicht genannt.",
+    "hoerfassung": "Das indische Computer-Notfallteam warnt mit höchster Stufe vor Angriffen auf Banken und Zahlungsdienstleister. Die Angreifer veränderten Geschäftsdaten und Freigaben und lösten dann über ganz normale Abläufe falsche Überweisungen aus. Dabei setzen sie laut der Behörde KI-Agenten ein, die Systeme selbstständig auskundschaften und Schwachstellen ausnutzen. Die Zeit vom Eindringen bis zum Schaden schrumpft so von Tagen auf wenige Stunden. Das zeigt, wie schnell Angriffe mit KI inzwischen ablaufen.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "CERT-In (Behörde), 20.11.2026; The Hacker News, 23.11.2026",
+        "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0062"
+      }
+    ],
+    "veroeffentlicht": "2026-11-25T08:08:14+01:00"
+  },
+  {
+    "id": "2026-11-23-oregon-virginia-klagen-grok-bilder",
+    "datum": "2026-11-23",
+    "titel": "Zwei US-Bundesstaaten verklagen Grok-Betreiber wegen KI-Bildern",
+    "titelLang": "Zwei US-Bundesstaaten verklagen Grok-Betreiber wegen KI-Bildern",
+    "text": "Die Generalstaatsanwälte von Oregon und Virginia haben die Betreiber von X und dem KI-Assistenten Grok verklagt, die zu SpaceX gehörende Firma xAI. Der Vorwurf: xAI habe Grok als sicher beworben, aber nicht verhindert, dass damit sexualisierte Bilder von Menschen ohne deren Einwilligung erzeugt werden, auch Darstellungen von Kindern. Schutzmechanismen seien geschwächt und ein freizügiger Bildmodus beworben worden, die Bilder hätten sich über X weit verbreitet. Die Klagen wurden in Oregon und in Richmond, Virginia, eingereicht. Die Staatsanwälte verlangen deutlich bessere Schutzmaßnahmen.",
+    "hoerfassung": "Die Generalstaatsanwälte der US-Bundesstaaten Oregon und Virginia haben den Betreiber eines verbreiteten KI-Assistenten verklagt. Der Vorwurf: Die Firma habe ihren KI-Assistenten als sicher beworben. Trotzdem konnten damit sexualisierte Bilder von Menschen ohne deren Einwilligung erzeugt werden, auch Darstellungen von Kindern. Schutzmaßnahmen seien sogar geschwächt worden. Die Staatsanwälte verlangen jetzt deutlich bessere Schutzregeln. Der Fall zeigt, wie wichtig Grenzen bei KI-Bildwerkzeugen sind.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "Oregon Department of Justice, 23.11.2026",
+        "url": "https://www.doj.state.or.us/media-home/news-media-releases/ag-rayfield-takes-legal-action-against-grok-for-failing-to-block-child-exploitation/"
+      }
+    ],
+    "veroeffentlicht": "2026-11-26T05:00:00+01:00"
+  },
+  {
+    "id": "2026-11-22-ki-anbieter-prompts-abgegriffen",
+    "datum": "2026-11-22",
+    "titel": "Versteckter Test: KI-Anbieter ließen Prompts abgreifen",
+    "titelLang": "Versteckter Test: KI-Anbieter ließen Prompts abgreifen",
+    "text": "Das Sicherheitsunternehmen Dragos hat von Juli bis November 2026 rund zwei Millionen Test-Prompts mit präparierten Links und falschen Zugangsdaten an KI-Dienste geschickt und beobachtet, wo diese wieder auftauchen. Ergebnis: Bei mindestens drei Hosting-Anbietern für KI-Modelle wurden Anfragen von Angreifern mitgelesen, teils bevor überhaupt ein Modell lief. Mit den abgegriffenen Test-Schlüsseln versuchten Angreifer, in Cloud-Konten einzudringen, zeitweise auch mit dem KI-Angriffswerkzeug ARTEX. Außerdem konnten Händler auf einem KI-Marktplatz Kundenprompts einfach speichern, und Anfragen mit der Einstellung 'keine Datenspeicherung' landeten trotzdem bei Dritten, unter anderem bei einem chinesischen KI-Labor. Der Vermittlungsdienst OpenRouter hat daraufhin drei Anbieter entfernt, 125 Zugänge herabgestuft und betroffene Kunden informiert, wurde nach eigener Aussage selbst aber nicht gehackt.",
+    "hoerfassung": "Forscher eines Sicherheitsunternehmens haben fünf Monate lang rund zwei Millionen präparierte Test-Anfragen an KI-Dienste geschickt. Dabei kam heraus: Bei mindestens drei Anbietern, die KI-Modelle betreiben, haben Angreifer Anfragen mitgelesen. Mit den falschen Test-Zugangsdaten versuchten sie sofort, in fremde Cloud-Konten einzudringen. Auch Anfragen mit der Einstellung keine Datenspeicherung landeten trotzdem bei Dritten. Ein großer Vermittlungsdienst für KI hat daraufhin drei Anbieter entfernt. Das zeigt, wie weit ein Prompt wandern kann, bevor die Antwort kommt.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "Dragos (Forscher), 19.11.2026; The Hacker News, 22.11.2026",
+        "url": "https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens"
+      }
+    ],
+    "veroeffentlicht": "2026-11-27T05:00:00+01:00"
+  },
+  {
+    "id": "2026-11-20-bazuka-handy-schadsoftware-ki-opfer",
+    "datum": "2026-11-20",
+    "titel": "Handy-Schadsoftware lässt KI die Opfer bewerten",
+    "titelLang": "Handy-Schadsoftware lässt KI die Opfer bewerten",
+    "text": "Die Sicherheitsfirma ThreatFabric hat die Android-Schadsoftware Bazuka entdeckt. Sie tarnt sich als angebliche Premium-Version von TikTok und stiehlt Bankdaten, Passwörter, Einmal-Codes und Krypto-Guthaben. Dabei legt sie ein Bildschirmfoto über das Display, damit Opfer nicht sehen, was im Hintergrund passiert. Im Steuerpult der Täter ist ein KI-Chat eingebaut, der unter anderem bewertet, welche Opfer sich am meisten lohnen. Verbreitet wird sie über Werbung in sozialen Netzwerken und gefälschte Webseiten.",
+    "hoerfassung": "Sicherheitsforscher haben eine neue Schadsoftware für Android-Handys entdeckt. Sie tarnt sich als Premium-Version einer beliebten Video-App und stiehlt Bankdaten, Passwörter und Einmal-Codes. Damit niemand etwas merkt, legt sie ein Standbild über den Bildschirm. Die Täter nutzen dabei einen KI-Chat, der bewertet, welche Opfer sich am meisten lohnen. Verbreitet wird sie über Werbung in sozialen Netzwerken und gefälschte Seiten.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "The Hacker News, 20.11.2026",
+        "url": "https://thehackernews.com/2026/11/bazuka-android-malware-uses-fake-screen.html"
+      }
+    ],
+    "veroeffentlicht": "2026-11-28T05:00:00+01:00"
+  },
+  {
+    "id": "2026-11-20-ki-agenten-finden-zero-day-allein",
+    "datum": "2026-11-20",
+    "titel": "KI-Agenten von Angreifern finden selbst eine unbekannte Lücke",
+    "titelLang": "KI-Agenten von Angreifern finden selbst eine unbekannte Lücke",
+    "text": "Amazon Threat Intelligence berichtet, dass eine vermutlich China-nahe Gruppe das frei verfügbare KI-Angriffswerkzeug Cairn eingesetzt hat. Die Angreifer gaben den KI-Agenten nur das Ziel vor, Zugriff auf Server zu bekommen, die Agenten planten die Schritte selbst. Bei Angriffen auf Universitäten in Ostasien im September fanden sie eine bis dahin unbekannte Lücke in der Medizin-Bild-Software MONAI Label und nutzten sie nach etwa 11 Minuten aus. So erlangten sie volle Kontrolle über mindestens einen Server. Andere Versuche, etwa das Durchprobieren von über 30.000 Zugangsdaten, scheiterten. Die Entwickler haben die Lücke im Quellcode behoben.",
+    "hoerfassung": "Angreifer haben KI-Agenten auf Universitäten losgelassen und ihnen nur ein Ziel genannt: Zugriff auf Server. Die Agenten planten ihre Schritte selbst und arbeiteten stundenlang ohne Pause. Dabei fanden sie eine bisher unbekannte Lücke in einer Software für medizinische Bilder. Nach nur etwa elf Minuten nutzten sie die Lücke aus und übernahmen einen Server vollständig. Das zeigt, wie schnell automatische Angriffe mit KI inzwischen sind.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "AWS Security Blog, 20.11.2026",
+        "url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/"
+      }
+    ],
+    "veroeffentlicht": "2026-11-29T05:00:00+01:00"
+  },
+  {
+    "id": "2026-11-20-signal-sperrt-ki-agenten-bildschirm",
+    "datum": "2026-11-20",
+    "titel": "Signal sperrt KI-Assistenten vom Bildschirm aus",
+    "titelLang": "Signal sperrt KI-Assistenten vom Bildschirm aus",
+    "text": "Der Messenger Signal blockiert ab sofort Bildschirmfotos, damit KI-Assistenten des Betriebssystems keine Nachrichten mitlesen. Unter iOS 27 geschieht das standardmäßig, unter Android schaltet Signal den Bildschirmschutz ein, sobald ein KI-Assistent den Bildschirm lesen will. Signal-Chefin Meredith Whittaker nennt KI-Agenten, die Bildschirminhalte auslesen und speichern, eine existenzielle Bedrohung für private Kommunikation. Genannt werden unter anderem Gemini, Siri und Metas Muse. Signal räumt ein, dass der Schutz unvollständig ist, auf dem Mac geht er nicht.",
+    "hoerfassung": "Ein bekannter verschlüsselter Messenger sperrt jetzt KI-Assistenten aus. Die App verhindert Bildschirmfotos, damit eingebaute KI-Helfer im Handy keine privaten Nachrichten mitlesen. Der Grund: Solche Assistenten lesen Bildschirminhalte und speichern sie in fremden Systemen. Der Anbieter nennt das eine Bedrohung für private Gespräche. Er räumt aber ein, dass der Schutz nicht auf allen Geräten funktioniert.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "Signal Blog, 20.11.2026",
+        "url": "https://signal.org/blog/protecting-your-privacy/"
+      }
+    ],
+    "veroeffentlicht": "2026-11-30T05:00:00+01:00"
+  },
+  {
+    "id": "2026-11-19-gemini-chats-zwei-monate-gespeichert",
+    "datum": "2026-11-19",
+    "titel": "Gemini speichert auch temporäre Chats rund zwei Monate",
+    "titelLang": "Gemini speichert auch temporäre Chats rund zwei Monate",
+    "text": "Google hat seine Hilfeseite zum Datenschutz bei Gemini aktualisiert. Dort steht jetzt, dass temporäre Chats und Chats mit ausgeschaltetem Verlauf rund zwei Monate mit dem Konto gespeichert werden. Laut The Hacker News waren es vorher 72 Stunden. Google schreibt außerdem, dass dabei auch menschliche Prüfer helfen. Chats, die von Prüfern gesehen wurden, werden vom Konto getrennt und bis zu drei Jahre aufbewahrt, auch wenn man sie löscht.",
+    "hoerfassung": "Ein großer KI-Anbieter hat seine Datenschutz-Hinweise geändert. Auch temporäre Chats und Chats mit ausgeschaltetem Verlauf werden jetzt rund zwei Monate gespeichert. Vorher waren es nach Medienberichten nur drei Tage. Dabei helfen laut Anbieter auch menschliche Prüfer. Chats, die Prüfer gesehen haben, bleiben bis zu drei Jahre gespeichert, auch wenn man sie löscht. Temporär heißt also nicht sofort weg.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "Google Gemini-Hilfe, 19.11.2026",
+        "url": "https://support.google.com/gemini/answer/13594961"
+      }
+    ],
+    "veroeffentlicht": "2026-12-01T05:00:00+01:00"
+  },
+  {
+    "id": "2026-11-19-themailer-ki-phishing-baukasten",
+    "datum": "2026-11-19",
+    "titel": "Phishing-Baukasten lässt KI Mails umschreiben, bis sie durchkommen",
+    "titelLang": "Phishing-Baukasten lässt KI Mails umschreiben, bis sie durchkommen",
+    "text": "Sicherheitsforscher von Varonis haben einen Phishing-Baukasten namens TheMailer untersucht, der seit März 2026 in Kriminellen-Kanälen verkauft wird. Die Täter binden eigene Zugänge zu großen KI-Diensten ein und lassen sich daraus Betrugsmails schreiben, auch als Kopie echter Firmen-Mails. Jeder Empfänger bekommt eine eigene Version mit eigenem Betreff. Eine Testschleife schickt Probemails, prüft, ob sie im Spam landen, und lässt die KI so lange umschreiben, bis sie im Posteingang ankommen. Auch Antworten der Opfer sortiert und beantwortet die KI. Eine Lizenz kostet laut Varonis etwa 3.000 bis 6.000 Dollar.",
+    "hoerfassung": "Sicherheitsforscher haben einen Baukasten für Betrugsmails untersucht, der seit März im Untergrund verkauft wird. Die Täter lassen damit KI-Dienste täuschend echte Mails schreiben, auch als Kopie echter Firmenpost. Jeder Empfänger bekommt eine eigene Version. Eine Testschleife prüft, ob die Mail im Spam landet, und lässt die KI so lange umschreiben, bis sie im Posteingang ankommt. Schlechte Rechtschreibung ist damit kein sicheres Warnzeichen mehr.",
+    "akut": false,
+    "quellen": [
+      {
+        "name": "Varonis Threat Labs, 19.11.2026",
+        "url": "https://www.varonis.com/blog/themailer-ai-phishing-kit"
+      }
+    ],
+    "veroeffentlicht": "2026-12-02T05:00:00+01:00"
   }
 ]
