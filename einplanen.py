@@ -10,7 +10,8 @@ neue.json: Liste von Meldungen im Format von data/meldungen.json, aber ohne
 "veroeffentlicht". Das Skript vergibt den Freischalt-Zeitpunkt:
 
 - Die ersten 3 Meldungen der Woche (ab Mittwoch 0 Uhr) starten sofort.
-- Jede weitere kommt am naechsten Morgen um 5 Uhr dazu, eine pro Tag.
+- Donnerstag bis Dienstag kommt jeden Morgen um 5 Uhr eine dazu (bei 9 Meldungen).
+- Alles bleibt in der eigenen Woche, nichts rutscht in die naechste Woche.
 - Reihenfolge: Akut zuerst, dann die neuesten Meldungen.
 
 Regel "einmal raus ist raus": Eine id, die schon in data/meldungen.json steht,
@@ -42,6 +43,25 @@ def morgen_um_fuenf(tag):
     return dt.datetime(tag.year, tag.month, tag.day, UHRZEIT, tzinfo=BERLIN)
 
 
+def wochenplan(anzahl, start, jetzt):
+    """Freischalt-Zeitpunkte fuer die Meldungen einer Woche (Mittwoch bis Dienstag).
+
+    Platz 1-3: Mittwoch (sofort bei der Freigabe), Platz 4-9: Donnerstag bis
+    Dienstag je einer um 5 Uhr. Mehr als 9: die zusaetzlichen kommen am Dienstag
+    dazu, nichts rutscht in die naechste Woche. Liegt ein Tag schon zurueck,
+    wird die Meldung sofort freigeschaltet."""
+    mittwoch = start.astimezone(BERLIN).date()
+    zeiten = []
+    for platz in range(anzahl):
+        tag_nr = 0 if platz < START_ANZAHL else min(platz - START_ANZAHL + 1, 6)
+        if tag_nr == 0:
+            t = jetzt
+        else:
+            t = morgen_um_fuenf(mittwoch + dt.timedelta(days=tag_nr))
+        zeiten.append(t)
+    return zeiten
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("neue")
@@ -67,19 +87,17 @@ def main():
     if a.nochmal:
         bestand = [m for m in bestand if m["id"] not in a.nochmal]
 
+    # Woche = Mittwoch 0 Uhr bis Dienstag 24 Uhr. Gezaehlt werden nur Meldungen,
+    # die in DIESER Woche freigegeben wurden (eingeplant am oder nach Mittwoch).
     start = rundenstart(jetzt)
-    diese_woche = [zeit(m["veroeffentlicht"]) for m in bestand if zeit(m["veroeffentlicht"]) >= start]
+    belegt = sum(1 for m in bestand if zeit(m.get("eingeplant", m["veroeffentlicht"])) >= start)
+    zeiten = wochenplan(belegt + len(einplanen), start, jetzt)[belegt:]
     plan = []
-    for m in einplanen:
-        anzahl = len(diese_woche)
-        if anzahl < START_ANZAHL:
-            t = jetzt - dt.timedelta(seconds=anzahl)            # sofort, feste Reihenfolge
-        else:
-            letzter_tag = max(diese_woche).astimezone(BERLIN).date()
-            tag = max(letzter_tag, jetzt.date()) + dt.timedelta(days=1)
-            t = morgen_um_fuenf(tag)
-        diese_woche.append(t)
+    for nr, (m, t) in enumerate(zip(einplanen, zeiten)):
+        if t <= jetzt:
+            t = jetzt - dt.timedelta(seconds=nr)        # sofort, feste Reihenfolge
         eintrag = dict(m)
+        eintrag["eingeplant"] = jetzt.isoformat()
         eintrag["veroeffentlicht"] = t.isoformat()
         bestand.append(eintrag)
         plan.append((t, m["id"]))
