@@ -432,23 +432,6 @@
     "veroeffentlicht": "2026-11-24T05:00:01+01:00"
   },
   {
-    "id": "2026-11-23-eu-kommission-daten-abgeflossen",
-    "datum": "2026-11-23",
-    "titel": "EU-Kommission: Nach KI-Angriff Daten abgeflossen",
-    "titelLang": "EU-Kommission: Nach KI-Angriff Daten abgeflossen",
-    "text": "Nach dem KI-gestützten Cyberangriff auf die EU-Kommission ist erstmals bestätigt, dass Daten abgeflossen sind: Namen und E-Mail-Adressen, vor allem von Nutzern der Lernplattform EU Academy. Die Webseite der EU Academy wurde am Samstag abgeschaltet, mehrere interne Anwendungen sind weiter offline. Der am 22. Oktober entdeckte Angriff ist laut zwei mit der Sache vertrauten Quellen noch nicht vollständig eingedämmt. Die Kommission vermutet intern eine staatlich unterstützte Gruppe aus China, offiziell zugeordnet ist der Angriff aber nicht. Die Kommission warnt vor möglichen Phishing-Mails mit den gestohlenen Daten.",
-    "hoerfassung": "Nach dem Cyberangriff mit einem KI-Werkzeug auf die EU-Kommission sind nun Daten abgeflossen. Betroffen sind Namen und E-Mail-Adressen, vor allem von Menschen, die eine Lernplattform der EU genutzt haben. Diese Plattform wurde am Wochenende abgeschaltet. Der Angriff wurde schon im Oktober entdeckt und ist noch nicht ganz eingedämmt. Die Kommission warnt vor gefälschten E-Mails, die mit den gestohlenen Daten verschickt werden könnten.",
-    "akut": false,
-    "quellen": [
-      {
-        "name": "Euronews, 23.11.2026",
-        "url": "https://de.euronews.com/2026/11/23/cyberangriff-eu-kommission-verdacht-china-hacker"
-      }
-    ],
-    "veroeffentlicht": "2026-11-25T08:08:15+01:00",
-    "eingeplant": "2026-11-25T08:08:15+01:00"
-  },
-  {
     "id": "2026-11-23-indien-ki-angriffe-zahlungen",
     "datum": "2026-11-23",
     "titel": "Indien: KI-gestützte Angriffe lösen falsche Zahlungen aus",
