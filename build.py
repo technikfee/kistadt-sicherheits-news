@@ -11,8 +11,9 @@ Ausgabe im Ordner site/:
 
 Warteschlange (festgelegt mit Evelyn am 10.11.2026): Jede Meldung hat in
 "veroeffentlicht" ihren Freischalt-Zeitpunkt (vergibt einplanen.py). Mittwochs
-starten 3 Meldungen, danach kommt jeden Morgen eine dazu. Alexa spielt die
-5 neuesten der laufenden Woche, die neueste zuerst, die aelteste faellt weg.
+starten 3 Meldungen, danach kommt jeden Morgen eine dazu. Alexa bekommt die
+5 zuletzt freigeschalteten der Woche in EINEM Eintrag, akut zuerst, dann die
+aktuellste Meldung (nach Datum) oben, die aelteste faellt weg.
 Mittwoch beginnt neu. Die News-Seite zeigt alle freigegebenen Meldungen sofort,
 nach Datum sortiert (wie Evelyns Dashboard). Die Alexa-Kennungen wechseln jede
 Stunde, damit man die Meldungen jederzeit wieder anhoeren kann.
@@ -43,11 +44,12 @@ MARKENSATZ = "Alle genannten Marken gehören ihren Herstellern."  # festgelegt m
 # Kennungs-Runde: Wird diese Zahl erhöht, bekommen alle Meldungen eine neue
 # Kennung und Alexa spielt sie wieder ab, auch wenn sie schon gehört wurden.
 KENNUNG_RUNDE = "2"
-PLATZHALTER = ("Heute gibt es keine neue Meldung aus den K I Stadt Sicherheits-News. "
+PLATZHALTER = ("Heute gibt es keine neue Meldung aus den Ka Ih Stadt Sicherheits-News. "
                "Hör bald wieder rein.")
 MAX_TAGE_ALEXA = 6          # Alexa spielt nichts, was aelter als 7 Tage ist
 MAX_MELDUNGEN_ALEXA = 5     # Amazon spielt hoechstens 5 Eintraege
 MAX_HOER = 800              # Zeichen, Sicherheitsgrenze (Ziel: 600)
+MAX_GESAMT = 4400           # Alexa schneidet einen Eintrag bei 4.500 Zeichen ab
 
 ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,120}$")
 DATUM_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
@@ -107,7 +109,7 @@ def meldungen_laden():
         if re.search(r"kischild|k i schild|punkt de\b|\.de\b", hoer.lower()):
             raise Fehler(f"{mid}: Hör-Fassung darf keine Webseite nennen, Alexa liest Adressen falsch vor")
         if "kistadt" in hoer.lower() or "ki-stadt" in hoer.lower():
-            raise Fehler(f"{mid}: In der Hör-Fassung 'K I Stadt' schreiben, damit Alexa es richtig ausspricht")
+            raise Fehler(f"{mid}: In der Hör-Fassung 'K I Stadt' oder 'Ka Ih Stadt' schreiben, damit Alexa es richtig ausspricht")
         quellen = m.get("quellen")
         if not isinstance(quellen, list) or not quellen:
             raise Fehler(f"{mid}: mindestens eine Quelle ist Pflicht")
@@ -147,7 +149,11 @@ def fuer_alexa_auswaehlen(meldungen, jetzt):
     start = rundenstart(jetzt)
     diese_woche = [m for m in frei if m["veroeffentlicht"] >= start]
     auswahl = diese_woche or [m for m in frei if m["veroeffentlicht"] >= start - dt.timedelta(days=7)]
-    return auswahl[:MAX_MELDUNGEN_ALEXA]
+    auswahl = auswahl[:MAX_MELDUNGEN_ALEXA]
+    # Vorlese-Reihenfolge (26.11.2026): Akut zuerst, dann die aktuellste
+    # Meldung oben (nach Datum der Meldung, wie im Dashboard).
+    auswahl.sort(key=lambda m: (m.get("akut", False), m["datum"], m["veroeffentlicht"]), reverse=True)
+    return auswahl
 
 
 def alexa_texte(auswahl, jetzt):
@@ -178,17 +184,23 @@ def feed_bauen(meldungen, jetzt):
     # Meldungen nicht noch einmal ab, mit neuer Kennung aber schon.
     stunde = jetzt.astimezone(BERLIN).strftime("%Y-%m-%d-%H")
     if aktuell:
-        eintraege = []
-        for m, text in zip(aktuell, alexa_texte(aktuell, jetzt)):
-            pruef = hashlib.sha256((KENNUNG_RUNDE + stunde + text).encode()).hexdigest()[:8]
-            eintraege.append({
-                "uid": f"urn:kistadt-sicherheits-news:{m['id']}-{pruef}",
-                "updateDate": alexa_zeit(m["veroeffentlicht"]),
-                "titleText": m["titel"],
-                "mainText": text,
-                "redirectionUrl": NEWS_URL,
-            })
-        return eintraege
+        # Alle Meldungen in EINEM Eintrag (26.11.2026): So bestimmt Alexa nicht
+        # selbst die Reihenfolge, die Ansage steht sicher am Anfang und der
+        # Schluss sicher am Ende. Amazon liest bis knapp 4.500 Zeichen.
+        texte = alexa_texte(aktuell, jetzt)
+        while len(" ".join(texte)) > MAX_GESAMT and len(aktuell) > 1:
+            aktuell = aktuell[:-1]
+            texte = alexa_texte(aktuell, jetzt)
+        text = " ".join(texte)
+        pruef = hashlib.sha256((KENNUNG_RUNDE + stunde + text).encode()).hexdigest()[:8]
+        neueste = max(m["veroeffentlicht"] for m in aktuell)
+        return [{
+            "uid": f"urn:kistadt-sicherheits-news:woche-{pruef}",
+            "updateDate": alexa_zeit(neueste),
+            "titleText": "KiStadt Sicherheits-News",
+            "mainText": text,
+            "redirectionUrl": NEWS_URL,
+        }]
     heute = jetzt.replace(hour=5, minute=0, second=0, microsecond=0)
     return [{
         "uid": f"urn:kistadt-sicherheits-news:platzhalter-{jetzt:%Y-%m-%d}-{hashlib.sha256(PLATZHALTER.encode()).hexdigest()[:8]}",

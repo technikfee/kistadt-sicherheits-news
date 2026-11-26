@@ -12,7 +12,7 @@ neue.json: Liste von Meldungen im Format von data/meldungen.json, aber ohne
 - Die ersten 3 Meldungen der Woche (ab Mittwoch 0 Uhr) starten sofort.
 - Donnerstag bis Dienstag kommt jeden Morgen um 5 Uhr eine dazu (bei 9 Meldungen).
 - Alles bleibt in der eigenen Woche, nichts rutscht in die naechste Woche.
-- Reihenfolge: Akut zuerst, dann die neuesten Meldungen.
+- Reihenfolge: Akut zuerst, dann nach Datum von alt nach neu (die neueste kommt zuletzt dazu und steht oben).
 
 Regel "einmal raus ist raus": Eine id, die schon in data/meldungen.json steht,
 wird nicht noch einmal eingeplant (Ausnahme nur auf Evelyns ausdrücklichen
@@ -81,8 +81,10 @@ def main():
             schon_raus.append(m["id"])
         else:
             einplanen.append(m)
-    # Akut zuerst, dann die neuesten Meldungen
-    einplanen.sort(key=lambda m: m["datum"], reverse=True)
+    # Akut zuerst, dann nach Datum der Meldung von alt nach neu (26.11.2026):
+    # So ist die taeglich dazukommende Meldung auch die aktuellste und steht
+    # bei Alexa oben, und wenn mehr als 5 da sind, faellt die aelteste weg.
+    einplanen.sort(key=lambda m: m["datum"])
     einplanen.sort(key=lambda m: not m.get("akut", False))
     if a.nochmal:
         bestand = [m for m in bestand if m["id"] not in a.nochmal]

@@ -81,7 +81,8 @@ def jahr_in_worten(jahr):
 
 def ansage(jetzt):
     lokal = jetzt.astimezone(BERLIN)
-    return f"K I Stadt Sicherheits-News im {MONATE[lokal.month - 1]} {jahr_in_worten(lokal.year)}."
+    # 26.11.2026: "K I Stadt" klang bei Alexa wie "mir Stadt", daher Lautschrift
+    return f"Ka Ih Stadt Sicherheits-News im {MONATE[lokal.month - 1]} {jahr_in_worten(lokal.year)}."
 
 
 def rundenstart(jetzt):
@@ -94,6 +95,7 @@ def rundenstart(jetzt):
 
 # Zeichen, bei denen die Vorlesestimme laut Amazon unberechenbar wird
 _ERSETZEN = [
+    (re.compile(r"\bK ?I[ -]?Stadt\b"), "Ka Ih Stadt"),   # 26.11.2026: "K I" klang wie "mir"
     (re.compile(r"\s[–—-]\s"), ", "),        # Gedankenstrich als Pause -> Komma
     (re.compile(r"[–—]"), "-"),
     (re.compile(r"…|\.\.\."), "."),

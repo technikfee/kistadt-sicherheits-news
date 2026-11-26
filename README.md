@@ -21,7 +21,8 @@ Dieses Fach enthält nur freigegebene, öffentliche Meldungen. Keine Zugangsdate
 - Alles bleibt in der eigenen Woche, nichts rutscht in die nächste Woche (`einplanen.py`).
 - Die Meldungen lassen sich jederzeit wieder anhören: Die Kennungen wechseln jede Stunde.
 - Der Bau läuft nach jeder Freigabe, jede Stunde und zusätzlich jeden Morgen kurz nach 5 Uhr über eine geplante Aufgabe.
-- Ansage: „K I Stadt Sicherheits-News im <Monat> <Jahr>.“, wechselnde Überleitungen, am Ende einmal „Alle genannten Marken gehören ihren Herstellern. Hör bald wieder rein.“ (`alexa_text.py`, `build.py`).
+- Alexa bekommt alle Meldungen in einem einzigen Eintrag, damit die Reihenfolge immer stimmt: akut zuerst, dann die aktuellste Meldung oben (nach Datum, wie im Dashboard). Eingeplant wird von alt nach neu, so ist die täglich neue Meldung auch die aktuellste.
+- Ansage: „Ka Ih Stadt Sicherheits-News im <Monat> <Jahr>.“, wechselnde Überleitungen, am Ende einmal „Alle genannten Marken gehören ihren Herstellern. Hör bald wieder rein.“ (`alexa_text.py`, `build.py`).
 - Die Hör-Fassung nennt die betroffene App, den Dienst oder die Firma und die Behörde mit Namen. Keine Medien, keine Webadressen.
 - Quellen nur: Behörden, Gesetze, Studien, Forscher, die betroffene Firma selbst und The Hacker News.
 - Die News-Seite trägt unten denselben Marken-Satz.
