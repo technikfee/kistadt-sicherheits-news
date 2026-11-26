@@ -39,6 +39,7 @@ SITE = ROOT / "site"
 NEWS_URL = "https://news.kischild.de/"
 NEWSLETTER_URL = "https://kischild.de/newsletter/"
 SCHLUSSSATZ = "Hör bald wieder rein."
+MARKENSATZ = "Alle genannten Marken gehören ihren Herstellern."  # festgelegt mit Evelyn am 26.11.2026
 # Kennungs-Runde: Wird diese Zahl erhöht, bekommen alle Meldungen eine neue
 # Kennung und Alexa spielt sie wieder ab, auch wenn sie schon gehört wurden.
 KENNUNG_RUNDE = "2"
@@ -97,8 +98,8 @@ def meldungen_laden():
         hoer = text_pruefen(m.get("hoerfassung"), "hoerfassung", mid, MAX_HOER)
         # Der Schlusssatz kommt nur einmal ans Ende des ganzen Feeds, nicht an jede Meldung
         hoer = hoer.strip()
-        while hoer.endswith(SCHLUSSSATZ):
-            hoer = hoer[:-len(SCHLUSSSATZ)].strip()
+        while hoer.endswith(SCHLUSSSATZ) or hoer.endswith(MARKENSATZ):
+            hoer = hoer.removesuffix(SCHLUSSSATZ).strip().removesuffix(MARKENSATZ).strip()
         if not hoer:
             raise Fehler(f"{mid}: Hör-Fassung ist leer")
         if "http" in hoer.lower() or "www." in hoer.lower():
@@ -165,6 +166,7 @@ def alexa_texte(auswahl, jetzt):
             teile.append(anfang if i == 0 else ende if i == n - 1 else mitte[i - 1])
         teile.append(saeubern(m["hoerfassung"]))
         if i == n - 1:
+            teile.append(MARKENSATZ)                    # einmal ganz am Ende
             teile.append(SCHLUSSSATZ)                   # nur nach der letzten Meldung
         texte.append(" ".join(teile))
     return texte
@@ -297,6 +299,7 @@ footer{{border-top:1px solid var(--linie);margin-top:36px;padding-top:18px;color
   <main>{inhalt}
   </main>
   <footer>
+    <span>{MARKENSATZ}</span>
     <span>© {stand:%Y} Evelyn Störzner · kischild.de</span>
     <a href="https://kischild.de/impressum.html">Impressum</a>
     <a href="https://kischild.de/datenschutz.html">Datenschutz</a>
