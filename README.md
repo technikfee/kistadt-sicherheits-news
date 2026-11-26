@@ -13,13 +13,17 @@ Dieses Fach enthält nur freigegebene, öffentliche Meldungen. Keine Zugangsdate
    - `feed.json`, die Nachrichten-Datei für den Alexa-Skill „KiStadt Sicherheits-News“
 4. Gibt es in den letzten Tagen keine Meldung, liest Alexa eine Platzhalter-Meldung vor.
 
-## Warteschlange für Alexa (seit 10.11.2026)
+## Ablauf für Alexa (festgelegt mit Evelyn, zuletzt 26.11.2026)
 
-- `einplanen.py` vergibt jeder neuen Meldung ihren Freischalt-Zeitpunkt: mittwochs starten 3, danach kommt jeden Morgen um 5 Uhr eine dazu (bei 9 Meldungen bis Dienstag).
-- Alexa spielt die 5 neuesten der laufenden Woche, die neueste zuerst. Mittwoch beginnt eine neue Woche.
-- Ansage: „K I Stadt Sicherheits-News im <Monat> <Jahr>.“, dann wechselnde Überleitungen zwischen den Meldungen, am Ende einmal „Hör bald wieder rein.“ (`alexa_text.py`).
+- Mittwochs gibt Evelyn 9 Meldungen frei.
+- Am Mittwoch liest Alexa 3 davon vor. Donnerstag bis Dienstag kommt jeden Morgen um 5 Uhr eine dazu.
+- Die neueste steht immer oben. Alexa spielt höchstens 5 Meldungen, die älteste fällt weg.
+- Alles bleibt in der eigenen Woche, nichts rutscht in die nächste Woche (`einplanen.py`).
+- Die Meldungen lassen sich jederzeit wieder anhören: Die Kennungen wechseln jede Stunde.
+- Der Bau läuft nach jeder Freigabe, jede Stunde und zusätzlich jeden Morgen kurz nach 5 Uhr über eine geplante Aufgabe.
+- Ansage: „K I Stadt Sicherheits-News im <Monat> <Jahr>.“, wechselnde Überleitungen, am Ende einmal „Hör bald wieder rein.“ (`alexa_text.py`).
 - Einmal raus ist raus: Eine Meldung, die schon im Fach liegt, wird nicht noch einmal eingeplant.
-- Die News-Seite zeigt eine Meldung ab ihrem Freischalt-Tag.
+- Die News-Seite zeigt alle freigegebenen Meldungen sofort, nach Datum sortiert, die neueste oben.
 
 `build.py` prüft jede Meldung (Pflichtfelder, Quellen, Schlusssatz der Hör-Fassung) und bricht ab, wenn etwas fehlt. So geht nie etwas Kaputtes online.
 

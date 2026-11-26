@@ -429,7 +429,7 @@
         "url": "https://thehackernews.com/2026/11/over-35000-grok-built-apps-exposed.html"
       }
     ],
-    "veroeffentlicht": "2026-11-25T05:00:00+01:00"
+    "veroeffentlicht": "2026-11-24T05:00:01+01:00"
   },
   {
     "id": "2026-11-23-eu-kommission-daten-abgeflossen",
@@ -445,7 +445,8 @@
         "url": "https://de.euronews.com/2026/11/23/cyberangriff-eu-kommission-verdacht-china-hacker"
       }
     ],
-    "veroeffentlicht": "2026-11-25T08:08:15+01:00"
+    "veroeffentlicht": "2026-11-25T08:08:15+01:00",
+    "eingeplant": "2026-11-25T08:08:15+01:00"
   },
   {
     "id": "2026-11-23-indien-ki-angriffe-zahlungen",
@@ -461,7 +462,8 @@
         "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0062"
       }
     ],
-    "veroeffentlicht": "2026-11-25T08:08:14+01:00"
+    "veroeffentlicht": "2026-11-25T08:08:14+01:00",
+    "eingeplant": "2026-11-25T08:08:15+01:00"
   },
   {
     "id": "2026-11-23-oregon-virginia-klagen-grok-bilder",
@@ -477,7 +479,8 @@
         "url": "https://www.doj.state.or.us/media-home/news-media-releases/ag-rayfield-takes-legal-action-against-grok-for-failing-to-block-child-exploitation/"
       }
     ],
-    "veroeffentlicht": "2026-11-26T05:00:00+01:00"
+    "veroeffentlicht": "2026-11-25T08:08:13+01:00",
+    "eingeplant": "2026-11-25T08:08:15+01:00"
   },
   {
     "id": "2026-11-22-ki-anbieter-prompts-abgegriffen",
@@ -493,7 +496,8 @@
         "url": "https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens"
       }
     ],
-    "veroeffentlicht": "2026-11-27T05:00:00+01:00"
+    "veroeffentlicht": "2026-11-26T05:00:00+01:00",
+    "eingeplant": "2026-11-25T08:08:15+01:00"
   },
   {
     "id": "2026-11-20-bazuka-handy-schadsoftware-ki-opfer",
@@ -509,7 +513,8 @@
         "url": "https://thehackernews.com/2026/11/bazuka-android-malware-uses-fake-screen.html"
       }
     ],
-    "veroeffentlicht": "2026-11-28T05:00:00+01:00"
+    "veroeffentlicht": "2026-11-27T05:00:00+01:00",
+    "eingeplant": "2026-11-25T08:08:15+01:00"
   },
   {
     "id": "2026-11-20-ki-agenten-finden-zero-day-allein",
@@ -525,7 +530,8 @@
         "url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/"
       }
     ],
-    "veroeffentlicht": "2026-11-29T05:00:00+01:00"
+    "veroeffentlicht": "2026-11-28T05:00:00+01:00",
+    "eingeplant": "2026-11-25T08:08:15+01:00"
   },
   {
     "id": "2026-11-20-signal-sperrt-ki-agenten-bildschirm",
@@ -541,7 +547,8 @@
         "url": "https://signal.org/blog/protecting-your-privacy/"
       }
     ],
-    "veroeffentlicht": "2026-11-30T05:00:00+01:00"
+    "veroeffentlicht": "2026-11-29T05:00:00+01:00",
+    "eingeplant": "2026-11-25T08:08:15+01:00"
   },
   {
     "id": "2026-11-19-gemini-chats-zwei-monate-gespeichert",
@@ -557,7 +564,8 @@
         "url": "https://support.google.com/gemini/answer/13594961"
       }
     ],
-    "veroeffentlicht": "2026-12-01T05:00:00+01:00"
+    "veroeffentlicht": "2026-11-30T05:00:00+01:00",
+    "eingeplant": "2026-11-25T08:08:15+01:00"
   },
   {
     "id": "2026-11-19-themailer-ki-phishing-baukasten",
@@ -573,6 +581,7 @@
         "url": "https://www.varonis.com/blog/themailer-ai-phishing-kit"
       }
     ],
-    "veroeffentlicht": "2026-12-02T05:00:00+01:00"
+    "veroeffentlicht": "2026-12-01T05:00:00+01:00",
+    "eingeplant": "2026-11-25T08:08:15+01:00"
   }
 ]

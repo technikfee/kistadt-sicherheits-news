@@ -12,7 +12,10 @@ Ausgabe im Ordner site/:
 Warteschlange (festgelegt mit Evelyn am 10.11.2026): Jede Meldung hat in
 "veroeffentlicht" ihren Freischalt-Zeitpunkt (vergibt einplanen.py). Mittwochs
 starten 3 Meldungen, danach kommt jeden Morgen eine dazu. Alexa spielt die
-5 neuesten der laufenden Woche, die neueste zuerst. Mittwoch beginnt neu.
+5 neuesten der laufenden Woche, die neueste zuerst, die aelteste faellt weg.
+Mittwoch beginnt neu. Die News-Seite zeigt alle freigegebenen Meldungen sofort,
+nach Datum sortiert (wie Evelyns Dashboard). Die Alexa-Kennungen wechseln jede
+Stunde, damit man die Meldungen jederzeit wieder anhoeren kann.
 
 Nur Python-Standardbibliothek. Bricht mit Fehler ab, wenn eine Meldung
 unvollstaendig oder fehlerhaft ist, damit nie etwas Kaputtes online geht.
@@ -169,10 +172,13 @@ def alexa_texte(auswahl, jetzt):
 
 def feed_bauen(meldungen, jetzt):
     aktuell = fuer_alexa_auswaehlen(meldungen, jetzt)
+    # Neue Kennung zu jeder vollen Stunde: Alexa spielt bereits gehoerte
+    # Meldungen nicht noch einmal ab, mit neuer Kennung aber schon.
+    stunde = jetzt.astimezone(BERLIN).strftime("%Y-%m-%d-%H")
     if aktuell:
         eintraege = []
         for m, text in zip(aktuell, alexa_texte(aktuell, jetzt)):
-            pruef = hashlib.sha256((KENNUNG_RUNDE + text).encode()).hexdigest()[:8]
+            pruef = hashlib.sha256((KENNUNG_RUNDE + stunde + text).encode()).hexdigest()[:8]
             eintraege.append({
                 "uid": f"urn:kistadt-sicherheits-news:{m['id']}-{pruef}",
                 "updateDate": alexa_zeit(m["veroeffentlicht"]),
@@ -330,9 +336,9 @@ def main():
     (SITE / "feed.json").write_text(json.dumps(feed, ensure_ascii=False, indent=2), encoding="utf-8")
     if aussprache:
         (SITE / "aussprache.json").write_text(json.dumps(aussprache, ensure_ascii=False, indent=2), encoding="utf-8")
-    # Die News-Seite zeigt nur, was schon freigeschaltet ist; Meldungen aus der
-    # Warteschlange erscheinen an ihrem Tag (der Bau laeuft jeden Morgen).
-    sichtbar = [m for m in meldungen if m["veroeffentlicht"] <= jetzt]
+    # Die News-Seite zeigt alle freigegebenen Meldungen sofort (so wie Evelyns
+    # Dashboard), nach Datum der Meldung sortiert, die neueste oben.
+    sichtbar = sorted(meldungen, key=lambda m: (m["datum"], m["veroeffentlicht"]), reverse=True)
     (SITE / "index.html").write_text(seite_bauen(sichtbar), encoding="utf-8")
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
     if notfall:
